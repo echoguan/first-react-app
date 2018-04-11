@@ -11,16 +11,24 @@ import {
 
 const RadioItem = Radio.RadioItem;
 
-function onChange(e) {
-  console.log(`radio checked:${e.target.value}`);
-}
-
 class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: "",
+      password: "",
+      repeatPassword: "",
       type: "genius"
     };
+    this.handleRegister = this.handleRegister.bind(this);
+  }
+
+  handleChange(key, value) {
+    this.setState({ [key]: value });
+  }
+
+  handleRegister() {
+    console.log(this.state);
   }
 
   render() {
@@ -30,19 +38,43 @@ class Register extends React.Component {
         <h2>用户注册</h2>
         <WingBlank>
           <List>
-            <InputItem>用户名</InputItem>
-            <InputItem>密码</InputItem>
-            <InputItem>确认密码</InputItem>
+            <InputItem onChange={v => this.handleChange("user", v)}>
+              用户名
+            </InputItem>
+            <InputItem
+              type="password"
+              onChange={v => this.handleChange("password", v)}
+            >
+              密码
+            </InputItem>
+            <InputItem
+              type="password"
+              onChange={v => this.handleChange("repeatPassword", v)}
+            >
+              确认密码
+            </InputItem>
           </List>
 
           <WhiteSpace />
           <List>
-            <RadioItem checked={this.state.type === "genius"}>牛人</RadioItem>
-            <RadioItem checked={this.state.type === "boss"}>BOSS</RadioItem>
+            <RadioItem
+              onChange={v => this.handleChange("type", "genius")}
+              checked={this.state.type === "genius"}
+            >
+              牛人
+            </RadioItem>
+            <RadioItem
+              onChange={v => this.handleChange("type", "boss")}
+              checked={this.state.type === "boss"}
+            >
+              BOSS
+            </RadioItem>
           </List>
 
           <WhiteSpace />
-          <Button>注册</Button>
+          <Button type="primary" onClick={this.handleRegister}>
+            注册
+          </Button>
         </WingBlank>
       </div>
     );
