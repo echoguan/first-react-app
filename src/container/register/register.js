@@ -8,8 +8,12 @@ import {
   InputItem,
   Radio
 } from "antd-mobile";
+import { connect } from "react-redux";
+import { register } from "../../redux/user.redux";
 
 const RadioItem = Radio.RadioItem;
+
+connect(state => state.user, { register });
 
 class Register extends React.Component {
   constructor(props) {
@@ -28,7 +32,7 @@ class Register extends React.Component {
   }
 
   handleRegister() {
-    console.log(this.state);
+    this.props.register(this.state);
   }
 
   render() {
@@ -38,6 +42,7 @@ class Register extends React.Component {
         <h2>用户注册</h2>
         <WingBlank>
           <List>
+            {this.props.msg ? <p>{this.props.msg}</p> : null}
             <InputItem onChange={v => this.handleChange("user", v)}>
               用户名
             </InputItem>
