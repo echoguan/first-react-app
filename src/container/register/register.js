@@ -13,8 +13,6 @@ import { register } from "../../redux/user.redux";
 
 const RadioItem = Radio.RadioItem;
 
-connect(state => state.user, { register });
-
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -86,4 +84,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default connect(state => state.user, { register })(Register);
