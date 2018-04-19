@@ -6,7 +6,7 @@ const ERROR_MSG = "ERROR_MSG";
 const initState = {
   isAuth: false,
   msg: "",
-  user: "",
+  username: "",
   pwd: "",
   type: ""
 };
@@ -45,18 +45,18 @@ export function user(state = initState, action) {
   }
 }
 
-export function register(user, pwd, repeatpwd, type) {
-  if (!user || !pwd || !type) {
+export function register({ username, password, repeatPassword, type }) {
+  if (!username || !password || !type) {
     return errorMsg("用户名密码必须输入");
   }
-  if (pwd !== repeatpwd) {
+  if (password !== repeatPassword) {
     return errorMsg("两次密码输入不一致");
   }
 
   return dispatch => {
-    axios.post("/user/register", { user, pwd, type }).then(res => {
+    axios.post("/user/register", { username, password, type }).then(res => {
       if (res.status === 200 && res.data.code === 0) {
-        dispatch(registerSuccess({ user, pwd, type }));
+        dispatch(registerSuccess({ username, password, type }));
       } else {
         dispatch(errorMsg(res.data.msg));
       }

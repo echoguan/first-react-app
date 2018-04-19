@@ -17,7 +17,7 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "",
+      username: "",
       password: "",
       repeatPassword: "",
       type: "genius"
@@ -40,8 +40,10 @@ class Register extends React.Component {
         <h2>用户注册</h2>
         <WingBlank>
           <List>
-            {this.props.msg ? <p>{this.props.msg}</p> : null}
-            <InputItem onChange={v => this.handleChange("user", v)}>
+            {this.props.msg ? (
+              <p className="error-msg">{this.props.msg}</p>
+            ) : null}
+            <InputItem onChange={v => this.handleChange("username", v)}>
               用户名
             </InputItem>
             <InputItem
@@ -84,4 +86,4 @@ class Register extends React.Component {
   }
 }
 
-export default connect(state => state.user, { register })(Register);
+export default connect(state => state.username, { register })(Register);
