@@ -10,6 +10,7 @@ import {
 } from "antd-mobile";
 import { connect } from "react-redux";
 import { register } from "../../redux/user.redux";
+import { Redirect } from "react-router-dom";
 
 const RadioItem = Radio.RadioItem;
 
@@ -36,6 +37,7 @@ class Register extends React.Component {
   render() {
     return (
       <div>
+        {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
         <Logo />
         <h2>用户注册</h2>
         <WingBlank>
@@ -86,4 +88,4 @@ class Register extends React.Component {
   }
 }
 
-export default connect(state => state.username, { register })(Register);
+export default connect(state => state.user, { register })(Register);

@@ -8,11 +8,12 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "",
+      username: "",
       password: ""
     };
 
     this.register = this.register.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   register() {
@@ -58,4 +59,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(state => state.username, { login })(Login);
+export default connect(state => state.user, { login })(Login);
