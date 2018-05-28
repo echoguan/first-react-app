@@ -9,6 +9,7 @@ import reducers from "./reducer";
 import "./config";
 
 import Login from "./container/login/login";
+import BossInfo from "./container/bossinfo/bossinfo";
 import Register from "./container/register/register";
 import AuthRoute from "./component/authroute/authroute";
 import "./index.css";
@@ -26,6 +27,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <AuthRoute />
+        <Route path="/bossinfo" component={BossInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
       </div>
