@@ -39,7 +39,6 @@ class Register extends React.Component {
       <div>
         {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
         <Logo />
-        <h2>用户注册</h2>
         <WingBlank>
           <List>
             {this.props.msg ? (

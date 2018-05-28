@@ -4,13 +4,13 @@ import { getRedirectPath } from "../util";
 const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const ERROR_MSG = "ERROR_MSG";
+const LOAD_DATA = "LOAD_DATA";
 
 const initState = {
   redirectTo: "",
   isAuth: false,
   msg: "",
   username: "",
-  pwd: "",
   type: ""
 };
 
@@ -48,6 +48,11 @@ export function user(state = initState, action) {
         msg: "",
         redirectTo: getRedirectPath(action.payload),
         isAuth: true,
+        ...action.payload
+      };
+    case LOAD_DATA:
+      return {
+        ...state,
         ...action.payload
       };
     case ERROR_MSG:
@@ -93,5 +98,12 @@ export function register({ username, password, repeatPassword, type }) {
         dispatch(errorMsg(res.data.msg));
       }
     });
+  };
+}
+
+export function loadData(userInfo) {
+  return {
+    type: LOAD_DATA,
+    payload: userInfo
   };
 }
