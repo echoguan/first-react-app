@@ -5,28 +5,33 @@ import { loadData } from "../../redux/user.redux";
 import { connect } from "react-redux";
 
 class AuthRoute extends React.Component {
-  componentDidMount() {
-    const publicList = ["/login", "/register"];
-    const pathname = this.props.location.pathname;
+    componentDidMount() {
+        const publicList = ["/login", "/register"];
+        const pathname = this.props.location.pathname;
 
-    if (publicList.indexOf(pathname) > -1) {
-      return null;
+        if (publicList.indexOf(pathname) > -1) {
+            return null;
+        }
+
+        axios.get("/user/info").then(res => {
+            if (res.status === 200) {
+                if (res.data.code === 0) {
+                    this.props.loadData(res.data.data);
+                } else {
+                    this.props.history.push("/login");
+                }
+            }
+        });
     }
 
-    axios.get("/user/info").then(res => {
-      if (res.status === 200) {
-        if (res.data.code === 0) {
-          this.props.loadData(res.data.data);
-        } else {
-          this.props.history.push("/login");
-        }
-      }
-    });
-  }
-
-  render() {
-    return null;
-  }
+    render() {
+        return null;
+    }
 }
 
-export default withRouter(connect(null, { loadData })(AuthRoute));
+export default withRouter(
+    connect(
+        null,
+        { loadData }
+    )(AuthRoute)
+);

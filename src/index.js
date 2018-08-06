@@ -15,23 +15,23 @@ import AuthRoute from "./component/authroute/authroute";
 import "./index.css";
 
 const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
+    reducers,
+    compose(
+        applyMiddleware(thunk),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <div>
-        <AuthRoute />
-        <Route path="/bossinfo" component={BossInfo} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </div>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
+    <Provider store={store}>
+        <BrowserRouter>
+            <div>
+                <AuthRoute />
+                <Route path="/bossinfo" component={BossInfo} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+            </div>
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById("root")
 );
