@@ -13,7 +13,9 @@ import BossInfo from "./container/bossinfo/bossinfo";
 import GeniusInfo from "./container/geniusinfo/geniusinfo";
 import Register from "./container/register/register";
 import AuthRoute from "./component/authroute/authroute";
+import Dashboard from "./component/dashboard/dashboard";
 import "./index.css";
+import { Switch } from "../node_modules/antd-mobile";
 
 const store = createStore(
     reducers,
@@ -28,10 +30,13 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <AuthRoute />
-                <Route path="/bossinfo" component={BossInfo} />
-                <Route path="/geniusinfo" component={GeniusInfo} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
+                <Switch>
+                    <Route path="/bossinfo" component={BossInfo} />
+                    <Route path="/geniusinfo" component={GeniusInfo} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/register" component={Register} />
+                    <Route component={Dashboard} />
+                </Switch>
             </div>
         </BrowserRouter>
     </Provider>,

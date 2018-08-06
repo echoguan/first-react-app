@@ -27,6 +27,13 @@ function authSuccess(data) {
     };
 }
 
+export function loadData(userInfo) {
+    return {
+        type: LOAD_DATA,
+        payload: userInfo
+    };
+}
+
 export function user(state = initState, action) {
     switch (action.type) {
         case AUTH_SUCCESS:
@@ -83,13 +90,6 @@ export function register({ username, password, repeatPassword, type }) {
                 dispatch(errorMsg(res.data.msg));
             }
         });
-    };
-}
-
-export function loadData(userInfo) {
-    return {
-        type: LOAD_DATA,
-        payload: userInfo
     };
 }
 
