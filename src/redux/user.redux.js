@@ -20,9 +20,10 @@ function errorMsg(msg) {
 }
 
 function authSuccess(data) {
+    const { password, ...dataNoPwd } = data;
     return {
         type: AUTH_SUCCESS,
-        payload: data
+        payload: dataNoPwd
     };
 }
 
