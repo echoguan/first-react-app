@@ -3,6 +3,7 @@ import { NavBar, InputItem, TextareaItem, Button } from "antd-mobile";
 import AvatarSelector from "../../component/avatar-selector/avatar-selector";
 import { connect } from "react-redux";
 import { update } from "../../redux/user.redux";
+import { Redirect } from "react-router-dom";
 
 class BossInfo extends React.Component {
     constructor(props) {
@@ -23,8 +24,14 @@ class BossInfo extends React.Component {
     }
 
     render() {
+        const currentPath = this.props.location.pathname;
+        const redirectTo = this.props.redirectTo;
+
         return (
             <div>
+                {redirectTo && redirectTo !== currentPath ? (
+                    <Redirect to={this.props.redirectTo} />
+                ) : null}
                 <NavBar mode="dark">BOSS完善信息页面</NavBar>
                 <AvatarSelector
                     selectAvatar={imgName => {
