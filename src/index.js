@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import reducers from "./reducer";
 import "./config";
@@ -15,7 +15,6 @@ import Register from "./container/register/register";
 import AuthRoute from "./component/authroute/authroute";
 import Dashboard from "./component/dashboard/dashboard";
 import "./index.css";
-import { Switch } from "../node_modules/antd-mobile";
 
 const store = createStore(
     reducers,
